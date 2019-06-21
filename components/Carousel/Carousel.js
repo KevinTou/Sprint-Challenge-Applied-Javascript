@@ -12,6 +12,8 @@ class Carousel {
     this.leftButton = props.querySelector(".left-button");
     // console.log("this.leftButton: ", this.leftButton);
 
+    this.leftButton.style.zIndex = "3";
+
     // Selects the right button from the parent carousel
     this.rightButton = props.querySelector(".right-button");
     // console.log("this.rightButton: ", this.rightButton);
@@ -34,11 +36,27 @@ class Carousel {
   // Rotate carousel to the left and reset index to the last index when it reaches the front
   rotateLeft() {
     this.images[this.currentIndex].style.display = "none";
+    this.images[this.currentIndex].classList.remove(
+      "animated",
+      "slideInLeft",
+      "slideInRight",
+      "faster"
+    );
     if (this.currentIndex === 0) {
       this.currentIndex = this.images.length - 1;
+      this.images[this.currentIndex].classList.add(
+        "animated",
+        "slideInLeft",
+        "faster"
+      );
       this.images[this.currentIndex].style.display = "block";
     } else {
       this.currentIndex -= 1;
+      this.images[this.currentIndex].classList.add(
+        "animated",
+        "slideInLeft",
+        "faster"
+      );
       this.images[this.currentIndex].style.display = "block";
     }
   }
@@ -46,11 +64,27 @@ class Carousel {
   // Rotate carousel to the right and reset index back to 0 when it reaches the end
   rotateRight() {
     this.images[this.currentIndex].style.display = "none";
+    this.images[this.currentIndex].classList.remove(
+      "animated",
+      "slideInRight",
+      "slideInLeft",
+      "faster"
+    );
     if (this.currentIndex === this.images.length - 1) {
       this.currentIndex = 0;
+      this.images[this.currentIndex].classList.add(
+        "animated",
+        "slideInRight",
+        "faster"
+      );
       this.images[this.currentIndex].style.display = "block";
     } else {
       this.currentIndex += 1;
+      this.images[this.currentIndex].classList.add(
+        "animated",
+        "slideInRight",
+        "faster"
+      );
       this.images[this.currentIndex].style.display = "block";
     }
   }
